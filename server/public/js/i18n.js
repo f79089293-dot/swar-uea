@@ -155,7 +155,48 @@ const translations = {
         feat8: "إيجار السيارات طويل الأمد",
         feat9: "فزعة للسيارات المستعملة",
         feat10: "التعويض عن الحوادث الشخصية",
-        year: "سنة"
+        year: "سنة",
+
+        // ===== SmartRing Homepage =====
+        srPageTitle: "SmartRing UAE | مستقبل الدفع بين يديك",
+        srCatalogTitle: "مجموعة الخواتم الذكية النقية",
+        srCatalogSubtitle: "اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب",
+        srLimitedStock: "محدود الكمية",
+        srProductDesc: "تصميم نقي وخالٍ من أي شعارات، مقاوم للماء.",
+        srShowDetails: "عرض المزيد من التفاصيل",
+        srHideDetails: "إخفاء التفاصيل",
+        srFeaturesLabel: "المزايا والخصائص:",
+        srValidity: "مدة صلاحية الخاتم: 2 سنة",
+        srNoBattery: "يعمل بلا بطارية نهائياً.",
+        srOrderNow: "طلب الآن",
+        srHowTitle: "كيف تربط الخاتم بحسابك البنكي؟",
+        srHowSubtitle: "خطوات بسيطة وسريعة لتفعيل الخاتم على حسابك البنكي بكل أمان",
+        srHowStep1Title: "1. حدد الخاتم والمقاس",
+        srHowStep1Desc: "اختر اللون والتصميم النقي والمقاس المناسب لإصبعك.",
+        srHowStep2Title: "2. اختر بنكك المفضل",
+        srHowStep2Desc: "حدد البنك الذي ترغب بربط الخاتم به في الإمارات.",
+        srHowStep3Title: "3. التوصيل والدفع عند الاستلام",
+        srHowStep3Desc: "يصلك الخاتم جاهزاً ومرفقاً بدليل التفعيل السريع عبر تطبيق المحفظة.",
+        srFaqTitle: "الأسئلة الشائعة",
+        srFaqSubtitle: "كل ما ترغب بمعرفته حول الخواتم الذكية المستقلة",
+        srFaqQ1: "هل الخاتم يحمل أي شعار بنكي؟",
+        srFaqA1: "لا، الخاتم نقي وخالٍ تماماً من أي شعارات أو أسماء بنوك، مما يمنحه مظهراً أنيقاً ومتعادلًا.",
+        srFooterText: "جميع الحقوق محفوظة © 2026 SmartRing UAE - خواتم دفع ذكية مستقلة وخالية من الشعارات",
+        srDiscount15: "خصم 15%",
+        srDiscount12: "خصم 12%",
+        srDiscount10: "خصم 10%",
+        srDiscount5: "خصم 5%",
+        srP1Name: "خاتم الدفع الذكي - ذهبي نقي",
+        srP1Details: "مصنوع من السيراميك الفاخر المعالج بطبقة ذهبية. مقاوم للخدش، مقاوم للماء بعمق 50 متراً، ولا يحتاج لأي شحن كهربائي.",
+        srP2Name: "خاتم الدفع الذكي - فضي نقي",
+        srP2Details: "تصميم عصري من الفضة التكتيكية المطفأة. متوافق مع كافة أجهزة نقاط البيع في الإمارات، ويدعم التشفير الآمن للبطاقات.",
+        srP3Name: "خاتم الدفع الذكي - أسود ملكي",
+        srP3Details: "مظهر ملكي أنيق بلون أسود مطفي (Matte Black). خفيف الوزن للغاية، مريح للاستخدام اليومي وأثناء ممارسة الرياضة.",
+        srP4Name: "خاتم الدفع الذكي - أزرق معدني",
+        srP4Details: "لمسة عصرية بلون أزرق معدني لامع. سطح أملس مقاوم للخدش، ومتوافق مع جميع المحافظ الرقمية ونقاط البيع.",
+        srP5Name: "خاتم الدفع الذكي - وردي معدني",
+        srP5Details: "تصميم أنيق بلون وردي معدني لامع. خفيف ومريح، مثالي للاستخدام اليومي ويدعم الدفع اللاتلامسي بأمان.",
+        srSelectRingFirst: "يرجى اختيار الخاتم أولاً ثم إكمال طلبك"
     },
     en: {
         // Header
@@ -310,7 +351,48 @@ const translations = {
         feat8: "Long-term Car Rental",
         feat9: "Used Cars by Fazaa",
         feat10: "Personal Accident Compensation",
-        year: "year"
+        year: "year",
+
+        // ===== SmartRing Homepage =====
+        srPageTitle: "SmartRing UAE | The Future of Payment in Your Hand",
+        srCatalogTitle: "The Pure Smart Rings Collection",
+        srCatalogSubtitle: "Choose the right ring, explore its details and features, and you will be directed to the order page",
+        srLimitedStock: "Limited Stock",
+        srProductDesc: "Pure design with no logos, water resistant.",
+        srShowDetails: "Show more details",
+        srHideDetails: "Hide details",
+        srFeaturesLabel: "Features & Specs:",
+        srValidity: "Ring validity: 2 years",
+        srNoBattery: "Works completely battery-free.",
+        srOrderNow: "Order Now",
+        srHowTitle: "How do you link the ring to your bank account?",
+        srHowSubtitle: "Simple and fast steps to activate the ring on your bank account safely",
+        srHowStep1Title: "1. Choose the ring and size",
+        srHowStep1Desc: "Pick the color, the pure design, and the size that fits your finger.",
+        srHowStep2Title: "2. Choose your preferred bank",
+        srHowStep2Desc: "Select the bank you want to link the ring to in the UAE.",
+        srHowStep3Title: "3. Delivery and cash on delivery",
+        srHowStep3Desc: "The ring arrives ready with a quick activation guide via the wallet app.",
+        srFaqTitle: "Frequently Asked Questions",
+        srFaqSubtitle: "Everything you want to know about standalone smart rings",
+        srFaqQ1: "Does the ring carry any bank logo?",
+        srFaqA1: "No, the ring is pure and completely free of any logos or bank names, giving it an elegant and neutral look.",
+        srFooterText: "All rights reserved © 2026 SmartRing UAE - Standalone smart payment rings free of logos",
+        srDiscount15: "15% OFF",
+        srDiscount12: "12% OFF",
+        srDiscount10: "10% OFF",
+        srDiscount5: "5% OFF",
+        srP1Name: "Smart Payment Ring - Pure Gold",
+        srP1Details: "Crafted from premium ceramic treated with a gold layer. Scratch resistant, water resistant to 50 meters, and requires no electrical charging.",
+        srP2Name: "Smart Payment Ring - Pure Silver",
+        srP2Details: "A modern design in matte tactical silver. Compatible with all point-of-sale devices in the UAE, and supports secure card encryption.",
+        srP3Name: "Smart Payment Ring - Royal Black",
+        srP3Details: "An elegant royal look in matte black. Ultra lightweight, comfortable for daily use and during sports.",
+        srP4Name: "Smart Payment Ring - Metallic Blue",
+        srP4Details: "A modern touch in shiny metallic blue. Smooth scratch-resistant surface, compatible with all digital wallets and point-of-sale devices.",
+        srP5Name: "Smart Payment Ring - Metallic Pink",
+        srP5Details: "An elegant design in shiny metallic pink. Lightweight and comfortable, ideal for daily use and supports secure contactless payment.",
+        srSelectRingFirst: "Please select a ring first to complete your order"
     }
 };
 
@@ -356,10 +438,13 @@ function applyLanguage(lang) {
         }
     });
     
-    // Update page title
-    const titleKey = document.querySelector('[data-i18n="pageTitle"]');
-    if (titleKey) {
-        document.title = translations[lang].pageTitle;
+    // Update page title (يستخدم مفتاح الترجمة الموجود على وسم <title>)
+    const titleEl = document.querySelector('title[data-i18n]');
+    if (titleEl) {
+        const key = titleEl.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            document.title = translations[lang][key];
+        }
     }
     
     // Update select options if exists

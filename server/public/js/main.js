@@ -43,15 +43,18 @@ function closeModal() {
 function checkUrlErrors() {
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
-    
+
+    // استخدم الترجمة إن توفّرت، وإلا اعرض نصاً عربياً افتراضياً
+    const msg = (key, fallback) => (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang][key]) || fallback;
+
     if (error === 'session_required') {
-        showError('يرجى اختيار الباقة أولاً ثم إكمال طلبك');
+        showError(msg('errorSelectPackage', 'يرجى اختيار الباقة أولاً ثم إكمال طلبك'));
     } else if (error === 'complete_order_first') {
-        showError('يرجى إكمال بيانات الطلب أولاً');
+        showError(msg('completeOrderFirst', 'يرجى إكمال بيانات الطلب أولاً'));
     } else if (error === 'complete_payment_first') {
-        showError('يرجى إتمام الدفع أولاً');
+        showError(msg('completePaymentFirst', 'يرجى إتمام الدفع أولاً'));
     }
-    
+
     // Clean URL
     window.history.replaceState({}, document.title, window.location.pathname);
 }

@@ -18,7 +18,7 @@ snaptr('track', 'PAGE_VIEW');
 <!-- End Snap Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SmartRing UAE | مستقبل الدفع بين يديك</title>
+    <title data-i18n="srPageTitle">SmartRing UAE | مستقبل الدفع بين يديك</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Cairo -->
@@ -113,9 +113,9 @@ snaptr('track', 'PAGE_VIEW');
     <div class="modal-overlay" id="errorModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:2000;">
         <div class="modal" style="background:#fff;border-radius:16px;padding:30px;max-width:420px;width:90%;text-align:center;">
             <i class="fas fa-exclamation-triangle" style="color:#d4af37;font-size:2rem;"></i>
-            <h2 style="font-weight:800;margin:14px 0 8px;">تنبيه</h2>
-            <p class="modal-message" id="errorMessage" style="color:#475569;font-size:0.95rem;margin-bottom:22px;">يرجى اختيار الخاتم أولاً ثم إكمال طلبك</p>
-            <button onclick="closeModal()" class="btn-gold" style="padding:10px 28px;border-radius:12px;font-weight:700;">حسناً</button>
+            <h2 style="font-weight:800;margin:14px 0 8px;" data-i18n="alertTitle">تنبيه</h2>
+            <p class="modal-message" id="errorMessage" style="color:#475569;font-size:0.95rem;margin-bottom:22px;" data-i18n="srSelectRingFirst">يرجى اختيار الخاتم أولاً ثم إكمال طلبك</p>
+            <button onclick="closeModal()" class="btn-gold" style="padding:10px 28px;border-radius:12px;font-weight:700;" data-i18n="okButton">حسناً</button>
         </div>
     </div>
 
@@ -141,8 +141,8 @@ snaptr('track', 'PAGE_VIEW');
     <!-- Product Catalog Section -->
     <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3">مجموعة الخواتم الذكية النقية</h2>
-            <p class="text-gray-600 text-sm">اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب</p>
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3" data-i18n="srCatalogTitle">مجموعة الخواتم الذكية النقية</h2>
+            <p class="text-gray-600 text-sm" data-i18n="srCatalogSubtitle">اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب</p>
         </div>
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- JavaScript injected -->
@@ -154,30 +154,30 @@ snaptr('track', 'PAGE_VIEW');
     <section id="how-it-works" class="py-20 bg-gray-100 border-t border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">كيف تربط الخاتم بحسابك البنكي؟</h2>
-                <p class="text-gray-600 text-sm">خطوات بسيطة وسريعة لتفعيل الخاتم على حسابك البنكي بكل أمان</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4" data-i18n="srHowTitle">كيف تربط الخاتم بحسابك البنكي؟</h2>
+                <p class="text-gray-600 text-sm" data-i18n="srHowSubtitle">خطوات بسيطة وسريعة لتفعيل الخاتم على حسابك البنكي بكل أمان</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
                     <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
                         <i class="fa-solid fa-hand-pointer"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">1. حدد الخاتم والمقاس</h3>
-                    <p class="text-gray-600 text-xs leading-relaxed">اختر اللون والتصميم النقي والمقاس المناسب لإصبعك.</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2" data-i18n="srHowStep1Title">1. حدد الخاتم والمقاس</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="srHowStep1Desc">اختر اللون والتصميم النقي والمقاس المناسب لإصبعك.</p>
                 </div>
                 <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
                     <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
                         <i class="fa-solid fa-building-columns"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">2. اختر بنكك المفضل</h3>
-                    <p class="text-gray-600 text-xs leading-relaxed">حدد البنك الذي ترغب بربط الخاتم به في الإمارات.</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2" data-i18n="srHowStep2Title">2. اختر بنكك المفضل</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="srHowStep2Desc">حدد البنك الذي ترغب بربط الخاتم به في الإمارات.</p>
                 </div>
                 <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
                     <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
                         <i class="fa-solid fa-truck-fast"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">3. التوصيل والدفع عند الاستلام</h3>
-                    <p class="text-gray-600 text-xs leading-relaxed">يصلك الخاتم جاهزاً ومرفقاً بدليل التفعيل السريع عبر تطبيق المحفظة.</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2" data-i18n="srHowStep3Title">3. التوصيل والدفع عند الاستلام</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed" data-i18n="srHowStep3Desc">يصلك الخاتم جاهزاً ومرفقاً بدليل التفعيل السريع عبر تطبيق المحفظة.</p>
                 </div>
             </div>
         </div>
@@ -187,13 +187,13 @@ snaptr('track', 'PAGE_VIEW');
     <!-- FAQ Section -->
     <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">الأسئلة الشائعة</h2>
-            <p class="text-gray-600 text-sm">كل ما ترغب بمعرفته حول الخواتم الذكية المستقلة</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3" data-i18n="srFaqTitle">الأسئلة الشائعة</h2>
+            <p class="text-gray-600 text-sm" data-i18n="srFaqSubtitle">كل ما ترغب بمعرفته حول الخواتم الذكية المستقلة</p>
         </div>
         <div class="space-y-4">
             <div class="border border-gray-200 rounded-2xl bg-white p-6 shadow-sm">
-                <h3 class="font-bold text-gray-900 mb-2">هل الخاتم يحمل أي شعار بنكي؟</h3>
-                <p class="text-gray-600 text-xs leading-relaxed">لا، الخاتم نقي وخالٍ تماماً من أي شعارات أو أسماء بنوك، مما يمنحه مظهراً أنيقاً ومتعادلًا.</p>
+                <h3 class="font-bold text-gray-900 mb-2" data-i18n="srFaqQ1">هل الخاتم يحمل أي شعار بنكي؟</h3>
+                <p class="text-gray-600 text-xs leading-relaxed" data-i18n="srFaqA1">لا، الخاتم نقي وخالٍ تماماً من أي شعارات أو أسماء بنوك، مما يمنحه مظهراً أنيقاً ومتعادلًا.</p>
             </div>
         </div>
     </section>
@@ -206,7 +206,7 @@ snaptr('track', 'PAGE_VIEW');
                 <i class="fa-solid fa-ring text-gold-500 text-lg"></i>
                 <span class="text-sm font-bold text-white">SmartRing UAE</span>
             </div>
-            <p>جميع الحقوق محفوظة © 2026 SmartRing UAE - خواتم دفع ذكية مستقلة وخالية من الشعارات</p>
+            <p data-i18n="srFooterText">جميع الحقوق محفوظة © 2026 SmartRing UAE - خواتم دفع ذكية مستقلة وخالية من الشعارات</p>
         </div>
     </footer>
 
@@ -215,99 +215,66 @@ snaptr('track', 'PAGE_VIEW');
     <script src="/js/main.js"></script>
     <script src="/js/i18n.js"></script>
     <script>
+        // المنتجات: النصوص تُقرأ من نظام الترجمة i18n حسب اللغة الحالية
         const products = [
-            {
-                id: 1,
-                name: "خاتم الدفع الذكي - ذهبي نقي",
-                price: 399,
-                discountText: "خصم 15%",
-                color: "#d4af37",
-                tier: "gold",
-                image: "خاتم ذهبي لامع على خلفية شفافة.png",
-                details: "مصنوع من السيراميك الفاخر المعالج بطبقة ذهبية. مقاوم للخدش، مقاوم للماء بعمق 50 متراً، ولا يحتاج لأي شحن كهربائي."
-            },
-            {
-                id: 2,
-                name: "خاتم الدفع الذكي - فضي نقي",
-                price: 349,
-                discountText: "خصم 10%",
-                color: "#94a3b8",
-                tier: "silver",
-                image: "خاتم معدني فضي لامع.png",
-                details: "تصميم عصري من الفضة التكتيكية المطفأة. متوافق مع كافة أجهزة نقاط البيع في الإمارات، ويدعم التشفير الآمن للبطاقات."
-            },
-            {
-                id: 3,
-                name: "خاتم الدفع الذكي - أسود ملكي",
-                price: 349,
-                discountText: "خصم 5%",
-                color: "#0f172a",
-                tier: "platinum",
-                image: "خاتم أسود لامع بتصميم عصري.png",
-                details: "مظهر ملكي أنيق بلون أسود مطفي (Matte Black). خفيف الوزن للغاية، مريح للاستخدام اليومي وأثناء ممارسة الرياضة."
-            },
-            {
-                id: 4,
-                name: "خاتم الدفع الذكي - أزرق معدني",
-                price: 379,
-                discountText: "خصم 12%",
-                color: "#3b82f6",
-                tier: "platinum",
-                image: "خاتم أزرق معدني لامع.png",
-                details: "لمسة عصرية بلون أزرق معدني لامع. سطح أملس مقاوم للخدش، ومتوافق مع جميع المحافظ الرقمية ونقاط البيع."
-            },
-            {
-                id: 5,
-                name: "خاتم الدفع الذكي - وردي معدني",
-                price: 379,
-                discountText: "خصم 12%",
-                color: "#ec4899",
-                tier: "gold",
-                image: "خاتم معدني وردي لامع.png",
-                details: "تصميم أنيق بلون وردي معدني لامع. خفيف ومريح، مثالي للاستخدام اليومي ويدعم الدفع اللاتلامسي بأمان."
-            }
+            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", discountKey: "srDiscount15", price: 399, color: "#d4af37", tier: "gold", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
+            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", discountKey: "srDiscount10", price: 349, color: "#94a3b8", tier: "silver", image: "خاتم معدني فضي لامع.png" },
+            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", discountKey: "srDiscount5", price: 349, color: "#0f172a", tier: "platinum", image: "خاتم أسود لامع بتصميم عصري.png" },
+            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", discountKey: "srDiscount12", price: 379, color: "#3b82f6", tier: "platinum", image: "خاتم أزرق معدني لامع.png" },
+            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", discountKey: "srDiscount12", price: 379, color: "#ec4899", tier: "gold", image: "خاتم معدني وردي لامع.png" }
         ];
+
+        // يقرأ الترجمة الحالية للعنصر (يعتمد على currentLang في i18n.js)
+        function tr(key) {
+            return (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang][key]) || key;
+        }
+
+        // حالة فتح التفاصيل لكل منتج حتى لا تُفقد عند تغيير اللغة
+        const openDetails = {};
 
         function renderProducts() {
             const grid = document.getElementById('products-grid');
-            grid.innerHTML = products.map(p => `
+            grid.innerHTML = products.map(p => {
+                const isOpen = !!openDetails[p.id];
+                return `
                 <div class="ring-card p-6 flex flex-col justify-between">
                     <!-- شارة محدود الكمية -->
                     <div class="absolute top-4 left-4 bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
-                        محدود الكمية
+                        ${tr('srLimitedStock')}
                     </div>
 
                     <div>
                         <div class="flex justify-center items-center py-8 bg-gray-50 rounded-2xl mb-4 border border-gray-100 overflow-hidden">
-                            <img src="/images/products/${encodeURIComponent(p.image)}" alt="${p.name}" class="h-40 w-auto object-contain drop-shadow-md" loading="lazy">
+                            <img src="/images/products/${encodeURIComponent(p.image)}" alt="${tr(p.nameKey)}" class="h-40 w-auto object-contain drop-shadow-md" loading="lazy">
                         </div>
                         <div class="space-y-3">
-                            <h3 class="text-lg font-bold text-gray-900">${p.name}</h3>
-                            <p class="text-xs text-gray-600">تصميم نقي وخالٍ من أي شعارات، مقاوم للماء.</p>
+                            <h3 class="text-lg font-bold text-gray-900">${tr(p.nameKey)}</h3>
+                            <p class="text-xs text-gray-600">${tr('srProductDesc')}</p>
 
                             <!-- زر عرض المزيد -->
                             <button onclick="toggleDetails(${p.id})" class="text-xs font-bold text-gold-600 hover:text-gold-500 flex items-center gap-1 focus:outline-none pt-1">
-                                <span id="btn-text-${p.id}">عرض المزيد من التفاصيل</span>
-                                <i id="btn-icon-${p.id}" class="fa-solid fa-chevron-down transition-transform"></i>
+                                <span id="btn-text-${p.id}">${isOpen ? tr('srHideDetails') : tr('srShowDetails')}</span>
+                                <i id="btn-icon-${p.id}" class="fa-solid fa-chevron-down transition-transform" style="transform: rotate(${isOpen ? '180deg' : '0deg'});"></i>
                             </button>
 
                             <!-- القائمة المنسدلة للتفاصيل والمزايا -->
-                            <div id="details-${p.id}" class="dropdown-content bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-600 leading-relaxed">
-                                <p><strong>المزايا والخصائص:</strong></p>
-                                <p class="mt-1">${p.details}</p>
-                                <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> مدة صلاحية الخاتم: 2 سنة</p>
-                                <p class="mt-1 text-[11px] text-red-600 font-bold"><i class="fa-solid fa-tag ml-1"></i> ${p.discountText}</p>
-                                <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> يعمل بلا بطارية نهائياً.</p>
+                            <div id="details-${p.id}" class="dropdown-content bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-600 leading-relaxed ${isOpen ? 'open' : ''}">
+                                <p><strong>${tr('srFeaturesLabel')}</strong></p>
+                                <p class="mt-1">${tr(p.detailsKey)}</p>
+                                <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> ${tr('srValidity')}</p>
+                                <p class="mt-1 text-[11px] text-red-600 font-bold"><i class="fa-solid fa-tag ml-1"></i> ${tr(p.discountKey)}</p>
+                                <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> ${tr('srNoBattery')}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
                         <span class="text-xl font-black text-gray-900">${p.price} AED</span>
-                        <button onclick="redirectToOrder(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">طلب الآن</button>
+                        <button onclick="redirectToOrder(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">${tr('srOrderNow')}</button>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         function toggleDetails(id) {
@@ -316,12 +283,13 @@ snaptr('track', 'PAGE_VIEW');
             const btnIcon = document.getElementById(`btn-icon-${id}`);
 
             content.classList.toggle('open');
+            openDetails[id] = content.classList.contains('open');
 
-            if (content.classList.contains('open')) {
-                btnText.innerText = "إخفاء التفاصيل";
+            if (openDetails[id]) {
+                btnText.innerText = tr('srHideDetails');
                 btnIcon.style.transform = "rotate(180deg)";
             } else {
-                btnText.innerText = "عرض المزيد من التفاصيل";
+                btnText.innerText = tr('srShowDetails');
                 btnIcon.style.transform = "rotate(0deg)";
             }
         }
@@ -341,7 +309,9 @@ snaptr('track', 'PAGE_VIEW');
             window.location.href = '/order?tier=' + tier + '&ring=' + productId;
         }
 
-        window.onload = renderProducts;
+        window.addEventListener('load', renderProducts);
+        // إعادة رسم المنتجات عند تغيير اللغة (يُطلق الحدث من i18n.js)
+        window.addEventListener('languageChanged', renderProducts);
     </script>
 </body>
 </html>
