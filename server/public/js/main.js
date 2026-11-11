@@ -39,6 +39,57 @@ function closeModal() {
     }
 }
 
+// ============ Brand / Home Confirmation ============
+
+// Reads a translation key, falling back to the Arabic base then a default.
+function trText(key, fallback) {
+    if (typeof translations !== 'undefined') {
+        const lang = translations[currentLang] || {};
+        if (lang[key]) return lang[key];
+        if (translations.ar && translations.ar[key]) return translations.ar[key];
+    }
+    return fallback;
+}
+
+// Asks the user to confirm leaving to the home page. Staying keeps the
+// current form data untouched.
+function confirmGoHome() {
+    const existing = document.getElementById('goHomeModal');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'goHomeModal';
+    overlay.setAttribute('dir', document.documentElement.getAttribute('dir') || 'rtl');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px;';
+    overlay.innerHTML = `
+        <div style="background:#fff;border-radius:20px;padding:28px 24px;max-width:380px;width:100%;text-align:center;box-shadow:0 12px 36px rgba(0,0,0,0.25);">
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(139,21,56,0.1);color:#8B1538;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <h3 style="font-size:1.2rem;font-weight:800;color:#1a1a2e;margin-bottom:10px;"></h3>
+            <p style="font-size:0.95rem;color:#666;line-height:1.7;margin-bottom:22px;"></p>
+            <div style="display:flex;gap:12px;">
+                <button type="button" data-action="yes" style="flex:1;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#8B1538,#6B0F2A);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;"></button>
+                <button type="button" data-action="no" style="flex:1;padding:14px;border:1px solid #e0e0e0;border-radius:12px;background:#f5f5f5;color:#333;font-size:1rem;font-weight:700;cursor:pointer;"></button>
+            </div>
+        </div>
+    `;
+
+    const card = overlay.firstElementChild;
+    card.querySelector('h3').textContent = trText('srGoHomeTitle', 'العودة إلى الرئيسية');
+    card.querySelector('p').textContent = trText('srGoHomeMessage', 'سيتم توجيهك إلى الصفحة الرئيسية ولن يتم حفظ اختياراتك الحالية.');
+    const yesBtn = card.querySelector('[data-action="yes"]');
+    const noBtn = card.querySelector('[data-action="no"]');
+    yesBtn.textContent = trText('srGoHomeYes', 'نعم');
+    noBtn.textContent = trText('srGoHomeNo', 'إلغاء');
+
+    yesBtn.addEventListener('click', () => { window.location.href = '/'; });
+    noBtn.addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+
+    document.body.appendChild(overlay);
+}
+
 // Check for URL error parameters
 function checkUrlErrors() {
     const urlParams = new URLSearchParams(window.location.search);

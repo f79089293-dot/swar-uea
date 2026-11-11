@@ -248,8 +248,8 @@ snaptr('track', 'PAGE_VIEW');
 
 
     <!-- JavaScript logic -->
-    <script src="/js/main.js"></script>
-    <script src="/js/i18n.js"></script>
+    <script src="/js/main.js?v=3"></script>
+    <script src="/js/i18n.js?v=3"></script>
     <script>
         // المنتجات: النصوص تُقرأ من نظام الترجمة i18n حسب اللغة الحالية
         const products = [
@@ -272,8 +272,12 @@ snaptr('track', 'PAGE_VIEW');
         const WATCH_SIZES = ["S", "M", "L"];
 
         // يقرأ الترجمة الحالية للعنصر (يعتمد على currentLang في i18n.js)
-        function tr(key) {
-            return (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang][key]) || key;
+        // يرجع للنص العربي ثم للنص الافتراضي الممرّر ثم للمفتاح، حتى لا يظهر
+        // معرّف خام عند فقد مفتاح الترجمة (مثلاً عند تحميل نسخة قديمة من i18n.js)
+        function tr(key, fallback) {
+            const lang = (typeof translations !== 'undefined' && translations[currentLang]) || {};
+            const base = (typeof translations !== 'undefined' && translations.ar) || {};
+            return lang[key] || base[key] || fallback || key;
         }
 
         // حالة فتح التفاصيل لكل منتج حتى لا تُفقد عند تغيير اللغة
@@ -378,7 +382,9 @@ snaptr('track', 'PAGE_VIEW');
 
             document.getElementById('sizeModalProduct').textContent = tr(product.nameKey);
             document.getElementById('sizeLabel').textContent = isRing ? tr('srRingSizesLabel') : tr('srWatchSizesLabel');
-            document.getElementById('sizeUnknownText').textContent = isRing ? tr('srSizeUnknownRing') : tr('srSizeUnknownWatch');
+            document.getElementById('sizeUnknownText').textContent = isRing
+                ? tr('srSizeUnknownRing', 'سيتم إرسال كمية من الخواتم بمقاسات مختلفة لتقوم باختيار الحجم المناسب.')
+                : tr('srSizeUnknownWatch', 'سيتم إرسال كمية من الساعات بمقاسات مختلفة لتقوم باختيار الحجم المناسب.');
 
             document.getElementById('sizeOptions').innerHTML = sizes.map(s => `
                 <button type="button" onclick="selectSize('${s}')" data-size="${s}"
@@ -428,7 +434,7 @@ snaptr('track', 'PAGE_VIEW');
         function confirmSize() {
             const unknown = document.getElementById('sizeUnknown').checked;
             if (!unknown && !selectedSize) {
-                document.getElementById('sizeError').textContent = tr('srSizeRequired');
+                document.getElementById('sizeError').textContent = tr('srSizeRequired', 'يرجى اختيار المقاس أو خيار «لا أعرف المقاس الدقيق».');
                 document.getElementById('sizeError').classList.remove('hidden');
                 return;
             }

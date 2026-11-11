@@ -3,10 +3,11 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.85);
+    background: #ffffff;
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
 }
 
 .sr-header-inner {
@@ -73,7 +74,7 @@
 
 .sr-header .lang-toggle {
     background: rgba(212, 175, 55, 0.12);
-    color: #f6d365;
+    color: #aa8c2c;
     padding: 8px 20px;
     border-radius: 25px;
     font-size: 15px;

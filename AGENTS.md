@@ -56,6 +56,20 @@ products in different sizes will be shipped. The choice is saved to `sessionStor
 (`fazaaSize`), along with the selected product (`fazaaProduct`: id, nameKey, type), before
 continuing to `/order`.
 
+Modal text is read through `tr(key, fallback)` in `index.html`. It resolves the current
+language, then the Arabic dictionary, then the passed Arabic fallback, then the raw key.
+This keeps the note readable even if the browser serves a stale `i18n.js` that lacks the
+`srSizeUnknown*` keys. Static asset links (`/js/*.js`, `/css/*.css`) carry a `?v=` query
+so cached copies refresh after a change.
+
+## Order page header
+
+The order pages (`order1..3`) share the `.sr-header` from `css/brand.css`, styled with a
+white background. Clicking the brand logo (`a.sr-brand`) calls `confirmGoHome()`
+(defined in `js/main.js`), which opens a confirmation dialog: "Yes" goes to `/`, "Cancel"
+closes the dialog and keeps the user on the current page with their form data intact.
+Keys: `srGoHomeTitle`, `srGoHomeMessage`, `srGoHomeYes`, `srGoHomeNo`.
+
 ## Order summary (order3)
 
 The selected product name is shown in the order details table and in the total section

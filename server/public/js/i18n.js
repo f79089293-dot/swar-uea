@@ -181,6 +181,10 @@ const translations = {
         srConfirmOrder: "متابعة الطلب",
         srCancel: "إلغاء",
         srSizeRequired: "يرجى اختيار المقاس أو خيار «لا أعرف المقاس الدقيق».",
+        srGoHomeTitle: "العودة إلى الرئيسية",
+        srGoHomeMessage: "سيتم توجيهك إلى الصفحة الرئيسية ولن يتم حفظ اختياراتك الحالية.",
+        srGoHomeYes: "نعم",
+        srGoHomeNo: "إلغاء",
         srHowTitle: "كيف تبدأ باستخدام المنتج؟",
         srHowSubtitle: "ثلاث خطوات بسيطة: فعّل المنتج، اربط بطاقتك البنكية، وابدأ الدفع بلمسة واحدة.",
         srHowStep1Title: "1. فعّل المنتج",
@@ -436,6 +440,10 @@ const translations = {
         srConfirmOrder: "Continue order",
         srCancel: "Cancel",
         srSizeRequired: "Please choose a size or the \"I don't know the exact size\" option.",
+        srGoHomeTitle: "Back to home",
+        srGoHomeMessage: "You will be taken to the home page and your current selections will not be saved.",
+        srGoHomeYes: "Yes",
+        srGoHomeNo: "Cancel",
         srHowTitle: "How do you start using the product?",
         srHowSubtitle: "Three simple steps: activate the product, link your bank card, and start paying with a single tap.",
         srHowStep1Title: "1. Activate the product",
@@ -587,8 +595,11 @@ function updateSelectOptions(lang) {
 }
 
 // Get translation
+// Falls back to the Arabic base text (then the key) so a missing key never
+// renders as a raw identifier when a stale bundle is served.
 function t(key) {
-    return translations[currentLang][key] || key;
+    const lang = translations[currentLang] || {};
+    return lang[key] || translations.ar[key] || key;
 }
 
 // Initialize language on page load
