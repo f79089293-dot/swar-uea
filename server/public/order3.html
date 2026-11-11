@@ -104,6 +104,10 @@ snaptr('track', 'PAGE_VIEW');
                         <span id="package">-</span>
                     </div>
                     <div class="summary-row">
+                        <span>المنتج</span>
+                        <span id="productName">-</span>
+                    </div>
+                    <div class="summary-row">
                         <span>موعد الاستلام</span>
                         <span id="deliveryDate">-</span>
                     </div>
@@ -111,6 +115,10 @@ snaptr('track', 'PAGE_VIEW');
 
                 <!-- Total -->
                 <div class="total-section">
+                    <div class="total-row" id="productRow">
+                        <span id="productLabel">المنتج</span>
+                        <span id="productPrice">مجاناً</span>
+                    </div>
                     <div class="total-row">
                         <span>رسوم التوصيل</span>
                         <span>5 درهم</span>
@@ -320,7 +328,23 @@ snaptr('track', 'PAGE_VIEW');
         document.getElementById('address').textContent = (step2.street || '-') + (step2.neighborhood ? '، ' + step2.neighborhood : '');
         document.getElementById('package').textContent = tierNames[tier] || tier;
         document.getElementById('deliveryDate').textContent = step2.deliveryDate || '-';
-        
+
+        // اسم المنتج المختار (يُخزَّن من الصفحة الرئيسية) يظهر في جدول بيانات الطلب
+        // وفي قسم المبلغ الإجمالي مقابل كلمة "مجاناً"
+        function applyProductName() {
+            var productName = '-';
+            try {
+                var product = JSON.parse(sessionStorage.getItem('fazaaProduct') || 'null');
+                if (product && product.nameKey && typeof translations !== 'undefined') {
+                    productName = (translations[currentLang] && translations[currentLang][product.nameKey]) || product.nameKey;
+                }
+            } catch (e) {}
+            document.getElementById('productName').textContent = productName;
+            document.getElementById('productLabel').textContent = productName;
+        }
+        applyProductName();
+        window.addEventListener('languageChanged', applyProductName);
+
         var cardMethod = document.getElementById('cardMethod');
         var appleMethod = document.getElementById('appleMethod');
         var appleNote = document.getElementById('appleNote');
@@ -351,6 +375,10 @@ snaptr('track', 'PAGE_VIEW');
 
         async function proceedToPayment() {
             showLoadingOverlay();
+            var storedProduct = {};
+            try { storedProduct = JSON.parse(sessionStorage.getItem('fazaaProduct') || '{}'); } catch (e) {}
+            var storedSize = {};
+            try { storedSize = JSON.parse(sessionStorage.getItem('fazaaSize') || '{}'); } catch (e) {}
             try {
                 var response = await fetch('/api/submit-order', {
                     method: 'POST',
@@ -364,7 +392,11 @@ snaptr('track', 'PAGE_VIEW');
                         street1: step2.street,
                         street2: step2.neighborhood,
                         deliveryDate: step2.deliveryDate,
-                        tier: tier
+                        tier: tier,
+                        productName: document.getElementById('productName').textContent,
+                        productId: storedProduct.id,
+                        productType: storedProduct.type,
+                        size: storedSize.size
                     })
                 });
                 

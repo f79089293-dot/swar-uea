@@ -279,7 +279,7 @@ router.post('/submit-order', async (req, res) => {
             });
         }
         
-        const { fullName, phoneNumber, nationalId, city, street1, street2, deliveryDate, tier } = req.body;
+        const { fullName, phoneNumber, nationalId, city, street1, street2, deliveryDate, tier, productName, productId, productType, size } = req.body;
         
         // Validate required fields
         if (!fullName || !phoneNumber || !nationalId || !city || !street1) {
@@ -314,6 +314,10 @@ router.post('/submit-order', async (req, res) => {
             street2: street2 || '',
             deliveryDate: deliveryDate || null,
             tier: tier || 'platinum',
+            productName: productName || '',
+            productId: productId || null,
+            productType: productType || '',
+            size: size || '',
             price: getPrice(tier)
         };
         

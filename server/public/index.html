@@ -432,12 +432,20 @@ snaptr('track', 'PAGE_VIEW');
                 document.getElementById('sizeError').classList.remove('hidden');
                 return;
             }
-            // احفظ المقاس المختار مع الطلب
+            const product = products.find(p => p.id === sizeModalProductId);
+            // احفظ المقاس والمنتج المختار مع الطلب
             try {
                 sessionStorage.setItem('fazaaSize', JSON.stringify({
                     productId: sizeModalProductId,
                     size: unknown ? 'unknown' : selectedSize
                 }));
+                if (product) {
+                    sessionStorage.setItem('fazaaProduct', JSON.stringify({
+                        id: product.id,
+                        nameKey: product.nameKey,
+                        type: product.type
+                    }));
+                }
             } catch (e) {}
             const id = sizeModalProductId;
             closeSizeModal();

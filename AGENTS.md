@@ -53,7 +53,15 @@ fitness trackers (heart rate, sleep, steps).
 a `type` (`ring` or `watch`); rings offer sizes `RING_SIZES` (16-22) and watches offer
 `WATCH_SIZES` (S/M/L). An "I don't know the exact size" option shows a note that a set of
 products in different sizes will be shipped. The choice is saved to `sessionStorage`
-(`fazaaSize`) before continuing to `/order`.
+(`fazaaSize`), along with the selected product (`fazaaProduct`: id, nameKey, type), before
+continuing to `/order`.
+
+## Order summary (order3)
+
+The selected product name is shown in the order details table and in the total section
+opposite the price ("مجاناً"), followed by the delivery fee (5 AED) and the total
+(5 AED). The product name is sent to `/api/submit-order` (as `productName`, `productId`,
+`productType`, `size`) and stored in the session's order data.
 
 ## tools/apply_logo.py
 
