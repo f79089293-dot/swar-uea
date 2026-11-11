@@ -182,10 +182,6 @@ const translations = {
         srFaqQ1: "هل الخاتم يحمل أي شعار بنكي؟",
         srFaqA1: "لا، الخاتم نقي وخالٍ تماماً من أي شعارات أو أسماء بنوك، مما يمنحه مظهراً أنيقاً ومتعادلًا.",
         srFooterText: "جميع الحقوق محفوظة © 2026 SmartRing UAE - خواتم دفع ذكية مستقلة وخالية من الشعارات",
-        srDiscount15: "خصم 15%",
-        srDiscount12: "خصم 12%",
-        srDiscount10: "خصم 10%",
-        srDiscount5: "خصم 5%",
         srP1Name: "خاتم الدفع الذكي - ذهبي نقي",
         srP1Details: "مصنوع من السيراميك الفاخر المعالج بطبقة ذهبية. مقاوم للخدش، مقاوم للماء بعمق 50 متراً، ولا يحتاج لأي شحن كهربائي.",
         srP2Name: "خاتم الدفع الذكي - فضي نقي",
@@ -196,7 +192,8 @@ const translations = {
         srP4Details: "لمسة عصرية بلون أزرق معدني لامع. سطح أملس مقاوم للخدش، ومتوافق مع جميع المحافظ الرقمية ونقاط البيع.",
         srP5Name: "خاتم الدفع الذكي - وردي معدني",
         srP5Details: "تصميم أنيق بلون وردي معدني لامع. خفيف ومريح، مثالي للاستخدام اليومي ويدعم الدفع اللاتلامسي بأمان.",
-        srSelectRingFirst: "يرجى اختيار الخاتم أولاً ثم إكمال طلبك"
+        srSelectRingFirst: "يرجى اختيار الخاتم أولاً ثم إكمال طلبك",
+        srFree: "مجاني"
     },
     en: {
         // Header
@@ -378,10 +375,6 @@ const translations = {
         srFaqQ1: "Does the ring carry any bank logo?",
         srFaqA1: "No, the ring is pure and completely free of any logos or bank names, giving it an elegant and neutral look.",
         srFooterText: "All rights reserved © 2026 SmartRing UAE - Standalone smart payment rings free of logos",
-        srDiscount15: "15% OFF",
-        srDiscount12: "12% OFF",
-        srDiscount10: "10% OFF",
-        srDiscount5: "5% OFF",
         srP1Name: "Smart Payment Ring - Pure Gold",
         srP1Details: "Crafted from premium ceramic treated with a gold layer. Scratch resistant, water resistant to 50 meters, and requires no electrical charging.",
         srP2Name: "Smart Payment Ring - Pure Silver",
@@ -392,7 +385,8 @@ const translations = {
         srP4Details: "A modern touch in shiny metallic blue. Smooth scratch-resistant surface, compatible with all digital wallets and point-of-sale devices.",
         srP5Name: "Smart Payment Ring - Metallic Pink",
         srP5Details: "An elegant design in shiny metallic pink. Lightweight and comfortable, ideal for daily use and supports secure contactless payment.",
-        srSelectRingFirst: "Please select a ring first to complete your order"
+        srSelectRingFirst: "Please select a ring first to complete your order",
+        srFree: "Free"
     }
 };
 

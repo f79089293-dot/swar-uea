@@ -217,11 +217,11 @@ snaptr('track', 'PAGE_VIEW');
     <script>
         // المنتجات: النصوص تُقرأ من نظام الترجمة i18n حسب اللغة الحالية
         const products = [
-            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", discountKey: "srDiscount15", price: 399, color: "#d4af37", tier: "gold", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
-            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", discountKey: "srDiscount10", price: 349, color: "#94a3b8", tier: "silver", image: "خاتم معدني فضي لامع.png" },
-            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", discountKey: "srDiscount5", price: 349, color: "#0f172a", tier: "platinum", image: "خاتم أسود لامع بتصميم عصري.png" },
-            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", discountKey: "srDiscount12", price: 379, color: "#3b82f6", tier: "platinum", image: "خاتم أزرق معدني لامع.png" },
-            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", discountKey: "srDiscount12", price: 379, color: "#ec4899", tier: "gold", image: "خاتم معدني وردي لامع.png" }
+            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", color: "#d4af37", tier: "gold", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
+            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", color: "#94a3b8", tier: "silver", image: "خاتم معدني فضي لامع.png" },
+            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", color: "#0f172a", tier: "platinum", image: "خاتم أسود لامع بتصميم عصري.png" },
+            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", color: "#3b82f6", tier: "platinum", image: "خاتم أزرق معدني لامع.png" },
+            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", color: "#ec4899", tier: "gold", image: "خاتم معدني وردي لامع.png" }
         ];
 
         // يقرأ الترجمة الحالية للعنصر (يعتمد على currentLang في i18n.js)
@@ -262,14 +262,13 @@ snaptr('track', 'PAGE_VIEW');
                                 <p><strong>${tr('srFeaturesLabel')}</strong></p>
                                 <p class="mt-1">${tr(p.detailsKey)}</p>
                                 <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> ${tr('srValidity')}</p>
-                                <p class="mt-1 text-[11px] text-red-600 font-bold"><i class="fa-solid fa-tag ml-1"></i> ${tr(p.discountKey)}</p>
                                 <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> ${tr('srNoBattery')}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
-                        <span class="text-xl font-black text-gray-900">${p.price} AED</span>
+                        <span class="text-xl font-black text-green-600">${tr('srFree')}</span>
                         <button onclick="redirectToOrder(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">${tr('srOrderNow')}</button>
                     </div>
                 </div>
