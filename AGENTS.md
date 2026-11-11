@@ -36,6 +36,10 @@ Discounts follow product importance, between 5% and 15%. Rings: gold 15%, pink 1
 (tagged as a soft feminine design), black 12%, blue 8%, silver 5%. Watches: gold 15%,
 pink 15% (soft feminine design), neon 12%, blue 8%, blue-lit 5%.
 
+All products (rings and watches) serve one purpose: linking bank cards and paying via
+NFC. Keep product copy about bank-card linking and NFC payment; do not describe them as
+fitness trackers (heart rate, sleep, steps).
+
 ## tools/apply_logo.py
 
 Engraves a bank logo onto the visible band of a ring product image. The ring band is
