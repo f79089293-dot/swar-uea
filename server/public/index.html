@@ -119,6 +119,38 @@ snaptr('track', 'PAGE_VIEW');
         </div>
     </div>
 
+    <!-- Size Selection Modal -->
+    <div class="modal-overlay" id="sizeModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:2100;padding:16px;">
+        <div class="modal" style="background:#fff;border-radius:16px;padding:26px;max-width:460px;width:100%;max-height:90vh;overflow-y:auto;">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-11 h-11 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-lg shrink-0">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                </div>
+                <h2 style="font-weight:800;font-size:1.15rem;" data-i18n="srSizeModalTitle">اختر المقاس المناسب</h2>
+            </div>
+            <p class="text-xs text-gray-500 mb-4" id="sizeModalProduct" style="font-weight:700;color:#aa8c2c;"></p>
+            <p class="text-xs text-gray-500 mb-4" data-i18n="srSizeModalSubtitle">حدد المقاس المناسب لك لإتمام طلبك.</p>
+
+            <p class="text-xs font-bold text-gray-700 mb-2" id="sizeLabel" data-i18n="srRingSizesLabel">مقاسات الخاتم المتوفرة:</p>
+            <div id="sizeOptions" class="grid grid-cols-3 gap-2 mb-4"></div>
+
+            <label id="sizeUnknownBox" class="flex items-start gap-3 p-3 rounded-xl border-2 border-gray-200 cursor-pointer mb-2 transition-colors" style="background:#f8fafc;">
+                <input type="checkbox" id="sizeUnknown" class="mt-1 accent-[#d4af37] w-4 h-4" onchange="onSizeUnknownChange()">
+                <span class="text-xs font-bold text-gray-800" data-i18n="srSizeUnknown">لا أعرف المقاس الدقيق</span>
+            </label>
+            <div id="sizeUnknownNote" class="hidden text-xs leading-relaxed rounded-xl p-3 mb-2" style="background:#fef3c7;color:#92400e;border:1px solid #fcd34d;">
+                <i class="fa-solid fa-circle-info ml-1"></i><span id="sizeUnknownText"></span>
+            </div>
+
+            <p id="sizeError" class="hidden text-xs font-bold mb-2" style="color:#dc2626;"></p>
+
+            <div class="flex items-center gap-3 mt-4">
+                <button onclick="confirmSize()" class="btn-gold flex-1 px-4 py-3 rounded-xl text-sm font-bold shadow-sm" data-i18n="srConfirmOrder">متابعة الطلب</button>
+                <button onclick="closeSizeModal()" class="px-5 py-3 rounded-xl text-sm font-bold text-gray-600 hover:text-gold-600 transition-colors border border-gray-200" data-i18n="srCancel">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -221,19 +253,23 @@ snaptr('track', 'PAGE_VIEW');
     <script>
         // المنتجات: النصوص تُقرأ من نظام الترجمة i18n حسب اللغة الحالية
         const products = [
-            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", color: "#d4af37", tier: "gold", discountKey: "srP1Discount", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
-            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", color: "#94a3b8", tier: "silver", discountKey: "srP2Discount", image: "خاتم معدني فضي لامع.png" },
-            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", color: "#0f172a", tier: "platinum", discountKey: "srP3Discount", image: "خاتم أسود لامع بتصميم عصري.png" },
-            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", color: "#3b82f6", tier: "platinum", discountKey: "srP4Discount", image: "خاتم أزرق معدني لامع.png" },
-            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", color: "#ec4899", tier: "gold", discountKey: "srP5Discount", image: "خاتم معدني وردي لامع.png" },
+            { id: 1, type: "ring", nameKey: "srP1Name", detailsKey: "srP1Details", color: "#d4af37", tier: "gold", discountKey: "srP1Discount", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
+            { id: 2, type: "ring", nameKey: "srP2Name", detailsKey: "srP2Details", color: "#94a3b8", tier: "silver", discountKey: "srP2Discount", image: "خاتم معدني فضي لامع.png" },
+            { id: 3, type: "ring", nameKey: "srP3Name", detailsKey: "srP3Details", color: "#0f172a", tier: "platinum", discountKey: "srP3Discount", image: "خاتم أسود لامع بتصميم عصري.png" },
+            { id: 4, type: "ring", nameKey: "srP4Name", detailsKey: "srP4Details", color: "#3b82f6", tier: "platinum", discountKey: "srP4Discount", image: "خاتم أزرق معدني لامع.png" },
+            { id: 5, type: "ring", nameKey: "srP5Name", detailsKey: "srP5Details", color: "#ec4899", tier: "gold", discountKey: "srP5Discount", image: "خاتم معدني وردي لامع.png" },
 
             // الساعات الذكية
-            { id: 6, nameKey: "srW1Name", detailsKey: "srW1Details", color: "#f472b6", tier: "gold", discountKey: "srW1Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية وردية بتقنية NFC.png" },
-            { id: 7, nameKey: "srW2Name", detailsKey: "srW2Details", color: "#a3e635", tier: "platinum", discountKey: "srW2Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة نيون.png" },
-            { id: 8, nameKey: "srW3Name", detailsKey: "srW3Details", color: "#3b82f6", tier: "silver", discountKey: "srW3Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية زرقاء بتقنية NFC.png" },
-            { id: 9, nameKey: "srW4Name", detailsKey: "srW4Details", color: "#d4af37", tier: "gold", discountKey: "srW4Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية ذهبية بتقنية الدفع اللاسلكي.png" },
-            { id: 10, nameKey: "srW5Name", detailsKey: "srW5Details", color: "#38bdf8", tier: "platinum", discountKey: "srW5Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة زرقاء.png" }
+            { id: 6, type: "watch", nameKey: "srW1Name", detailsKey: "srW1Details", color: "#f472b6", tier: "gold", discountKey: "srW1Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية وردية بتقنية NFC.png" },
+            { id: 7, type: "watch", nameKey: "srW2Name", detailsKey: "srW2Details", color: "#a3e635", tier: "platinum", discountKey: "srW2Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة نيون.png" },
+            { id: 8, type: "watch", nameKey: "srW3Name", detailsKey: "srW3Details", color: "#3b82f6", tier: "silver", discountKey: "srW3Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية زرقاء بتقنية NFC.png" },
+            { id: 9, type: "watch", nameKey: "srW4Name", detailsKey: "srW4Details", color: "#d4af37", tier: "gold", discountKey: "srW4Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية ذهبية بتقنية الدفع اللاسلكي.png" },
+            { id: 10, type: "watch", nameKey: "srW5Name", detailsKey: "srW5Details", color: "#38bdf8", tier: "platinum", discountKey: "srW5Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة زرقاء.png" }
         ];
+
+        // المقاسات المتوفرة لكل نوع منتج
+        const RING_SIZES = ["16", "17", "18", "19", "20", "21", "22"];
+        const WATCH_SIZES = ["S", "M", "L"];
 
         // يقرأ الترجمة الحالية للعنصر (يعتمد على currentLang في i18n.js)
         function tr(key) {
@@ -288,7 +324,7 @@ snaptr('track', 'PAGE_VIEW');
 
                     <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
                         <span class="text-xl font-black text-green-600">${tr('srFree')}</span>
-                        <button onclick="redirectToOrder(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">${tr('srOrderNow')}</button>
+                        <button onclick="openSizeModal(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">${tr('srOrderNow')}</button>
                     </div>
                 </div>
             `;
@@ -327,9 +363,95 @@ snaptr('track', 'PAGE_VIEW');
             window.location.href = '/order?tier=' + tier + '&ring=' + productId;
         }
 
+        // ===== نافذة اختيار المقاس =====
+        let sizeModalProductId = null;
+        let selectedSize = null;
+
+        function openSizeModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            sizeModalProductId = productId;
+            selectedSize = null;
+
+            const isRing = product.type === 'ring';
+            const sizes = isRing ? RING_SIZES : WATCH_SIZES;
+
+            document.getElementById('sizeModalProduct').textContent = tr(product.nameKey);
+            document.getElementById('sizeLabel').textContent = isRing ? tr('srRingSizesLabel') : tr('srWatchSizesLabel');
+            document.getElementById('sizeUnknownText').textContent = isRing ? tr('srSizeUnknownRing') : tr('srSizeUnknownWatch');
+
+            document.getElementById('sizeOptions').innerHTML = sizes.map(s => `
+                <button type="button" onclick="selectSize('${s}')" data-size="${s}"
+                    class="size-opt py-3 rounded-xl border-2 border-gray-200 text-sm font-bold text-gray-700 transition-colors hover:border-gold-500">${s}</button>
+            `).join('');
+
+            // إعادة الضبط
+            const unknown = document.getElementById('sizeUnknown');
+            unknown.checked = false;
+            document.getElementById('sizeUnknownNote').classList.add('hidden');
+            document.getElementById('sizeError').classList.add('hidden');
+            document.getElementById('sizeModal').classList.add('show');
+        }
+
+        function selectSize(size) {
+            selectedSize = size;
+            document.getElementById('sizeUnknown').checked = false;
+            document.getElementById('sizeUnknownNote').classList.add('hidden');
+            document.getElementById('sizeError').classList.add('hidden');
+            document.querySelectorAll('.size-opt').forEach(btn => {
+                const active = btn.dataset.size === size;
+                btn.classList.toggle('border-gold-500', active);
+                btn.classList.toggle('bg-gold-500', active);
+                btn.classList.toggle('text-white', active);
+                btn.classList.toggle('border-gray-200', !active);
+                btn.classList.toggle('text-gray-700', !active);
+            });
+        }
+
+        function onSizeUnknownChange() {
+            const checked = document.getElementById('sizeUnknown').checked;
+            document.getElementById('sizeUnknownNote').classList.toggle('hidden', !checked);
+            if (checked) {
+                selectedSize = null;
+                document.getElementById('sizeError').classList.add('hidden');
+                document.querySelectorAll('.size-opt').forEach(btn => {
+                    btn.classList.remove('border-gold-500', 'bg-gold-500', 'text-white');
+                    btn.classList.add('border-gray-200', 'text-gray-700');
+                });
+            }
+        }
+
+        function closeSizeModal() {
+            document.getElementById('sizeModal').classList.remove('show');
+        }
+
+        function confirmSize() {
+            const unknown = document.getElementById('sizeUnknown').checked;
+            if (!unknown && !selectedSize) {
+                document.getElementById('sizeError').textContent = tr('srSizeRequired');
+                document.getElementById('sizeError').classList.remove('hidden');
+                return;
+            }
+            // احفظ المقاس المختار مع الطلب
+            try {
+                sessionStorage.setItem('fazaaSize', JSON.stringify({
+                    productId: sizeModalProductId,
+                    size: unknown ? 'unknown' : selectedSize
+                }));
+            } catch (e) {}
+            const id = sizeModalProductId;
+            closeSizeModal();
+            redirectToOrder(id);
+        }
+
         window.addEventListener('load', renderProducts);
         // إعادة رسم المنتجات عند تغيير اللغة (يُطلق الحدث من i18n.js)
         window.addEventListener('languageChanged', renderProducts);
+
+        // إغلاق نافذة المقاس عند الضغط خارجها
+        document.getElementById('sizeModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeSizeModal();
+        });
     </script>
 </body>
 </html>

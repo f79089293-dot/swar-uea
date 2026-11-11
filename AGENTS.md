@@ -47,6 +47,14 @@ All products (rings and watches) serve one purpose: linking bank cards and payin
 NFC. Keep product copy about bank-card linking and NFC payment; do not describe them as
 fitness trackers (heart rate, sleep, steps).
 
+## Size selection modal
+
+"Order Now" opens a modal (`#sizeModal`) to pick a size before ordering. Each product has
+a `type` (`ring` or `watch`); rings offer sizes `RING_SIZES` (16-22) and watches offer
+`WATCH_SIZES` (S/M/L). An "I don't know the exact size" option shows a note that a set of
+products in different sizes will be shipped. The choice is saved to `sessionStorage`
+(`fazaaSize`) before continuing to `/order`.
+
 ## tools/apply_logo.py
 
 Engraves a bank logo onto the visible band of a ring product image. The ring band is
