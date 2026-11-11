@@ -141,6 +141,11 @@ app.get('/success', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'success.html'));
 });
 
+// /usage - how to activate and use the product (public, no session needed)
+app.get('/usage', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'usage.html'));
+});
+
 // Catch-all
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

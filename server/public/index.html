@@ -142,7 +142,7 @@ snaptr('track', 'PAGE_VIEW');
     <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3" data-i18n="srCatalogTitle">مجموعة الخواتم والساعات الذكية</h2>
-            <p class="text-gray-600 text-sm" data-i18n="srCatalogSubtitle">اختر الخاتم أو الساعة المناسبة، استعرض تفاصيلها ومزاياها، وسيتم توجيهك لصفحة إتمام الطلب</p>
+            <p class="text-gray-600 text-sm" data-i18n="srCatalogSubtitle">هذه المنتجات — الساعة الذكية والخاتم الذكي — يمكنك ربطها مع أي بطاقة بنكية والدفع بها مباشرة عبر تقنية NFC.</p>
         </div>
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- JavaScript injected -->
@@ -259,9 +259,15 @@ snaptr('track', 'PAGE_VIEW');
                             <h3 class="text-lg font-bold text-gray-900">${tr(p.nameKey)}</h3>
                             <p class="text-xs text-gray-600">${tr('srProductDesc')}</p>
 
-                            <!-- زر عرض المزيد -->
-                            <button onclick="toggleDetails(${p.id})" class="text-xs font-bold text-gold-600 hover:text-gold-500 flex items-center gap-1 focus:outline-none pt-1">
-                                <span id="btn-text-${p.id}">${isOpen ? tr('srHideDetails') : tr('srShowDetails')}</span>
+                            <!-- زر عرض المزيد: يوجه العميل إلى صفحة كيفية الاستخدام -->
+                            <a href="/usage" class="text-xs font-bold text-gold-600 hover:text-gold-500 flex items-center gap-1 focus:outline-none pt-1">
+                                <span>${tr('srShowDetails')}</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+
+                            <!-- زر الخصم والمزايا (يظهر قيمة الخصم عند الضغط فقط) -->
+                            <button onclick="toggleDetails(${p.id})" class="text-xs font-bold text-gray-500 hover:text-gold-500 flex items-center gap-1 focus:outline-none">
+                                <span id="btn-text-${p.id}">${isOpen ? tr('srHideDetails') : tr('srDiscountInfo')}</span>
                                 <i id="btn-icon-${p.id}" class="fa-solid fa-chevron-down transition-transform" style="transform: rotate(${isOpen ? '180deg' : '0deg'});"></i>
                             </button>
 
@@ -297,7 +303,7 @@ snaptr('track', 'PAGE_VIEW');
                 btnText.innerText = tr('srHideDetails');
                 btnIcon.style.transform = "rotate(180deg)";
             } else {
-                btnText.innerText = tr('srShowDetails');
+                btnText.innerText = tr('srDiscountInfo');
                 btnIcon.style.transform = "rotate(0deg)";
             }
         }

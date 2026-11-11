@@ -16,8 +16,15 @@ PORT=12000 npm start      # Express; reads PORT from the env (default 10000)
 Health check: `GET /api/health`. Preview hosts for this workspace map port 12000 to
 `https://work-1-<id>.prod-runtime.all-hands.dev/`.
 
-Static pages: `index.html`, `order1..3.html`, `payment.html`, `verification.html`,
-`success.html`. Product images live in `server/public/images/products/`.
+Static pages: `index.html`, `usage.html`, `order1..3.html`, `payment.html`,
+`verification.html`, `success.html`. Product images live in
+`server/public/images/products/`.
+
+## Usage page
+
+`usage.html` (served at `/usage`, public, no session) explains activation and use in the
+homepage style. Each catalog card's "show more details" link points here. Its text lives
+in `i18n.js` under the `srUsage*` keys, plus `srViewProducts` / `srBackHome` / `srUsageNote`.
 
 ## Product catalog
 
