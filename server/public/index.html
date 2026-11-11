@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="htmlRoot">
+<html lang="ar" dir="rtl">
 <head>
 <!-- Snap Pixel Code -->
 <script type='text/javascript'>
@@ -18,177 +18,330 @@ snaptr('track', 'PAGE_VIEW');
 <!-- End Snap Pixel Code -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="pageTitle">faza - فزعة</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>SmartRing UAE | مستقبل الدفع بين يديك</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            500: '#d4af37',
+                            600: '#aa8c2c',
+                        },
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            overflow-x: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #8b6508 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #f6d365 0%, #d4af37 100%);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        .ring-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        .ring-card:hover {
+            border-color: #d4af37;
+            box-shadow: 0 20px 35px -10px rgba(212, 175, 55, 0.25);
+            transform: translateY(-4px);
+        }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+            opacity: 0;
+        }
+        .dropdown-content.open {
+            max-height: 380px;
+            opacity: 1;
+        }
+        .sr-lang-toggle {
+            background: rgba(212, 175, 55, 0.12);
+            color: #aa8c2c;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
+        }
+        .sr-lang-toggle:hover {
+            background: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+        }
+        .modal-overlay.show {
+            display: flex !important;
+        }
+    </style>
 </head>
-<body>
-    <div class="modal-overlay" id="errorModal">
-        <div class="modal">
-            <div class="modal-icon error">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <h2 class="modal-title" data-i18n="alertTitle">تنبيه</h2>
-            <p class="modal-message" id="errorMessage" data-i18n="errorSelectPackage">يرجى اختيار الباقة أولاً ثم إكمال طلبك</p>
-            <button class="btn btn-primary modal-btn" onclick="closeModal()" data-i18n="okButton">حسناً</button>
+<body class="antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- Error Modal -->
+    <div class="modal-overlay" id="errorModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:2000;">
+        <div class="modal" style="background:#fff;border-radius:16px;padding:30px;max-width:420px;width:90%;text-align:center;">
+            <i class="fas fa-exclamation-triangle" style="color:#d4af37;font-size:2rem;"></i>
+            <h2 style="font-weight:800;margin:14px 0 8px;">تنبيه</h2>
+            <p class="modal-message" id="errorMessage" style="color:#475569;font-size:0.95rem;margin-bottom:22px;">يرجى اختيار الخاتم أولاً ثم إكمال طلبك</p>
+            <button onclick="closeModal()" class="btn-gold" style="padding:10px 28px;border-radius:12px;font-weight:700;">حسناً</button>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <img src="/images/logo.png" alt="Fazaa">
-            </div>
-            <nav class="nav">
-                <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border-2 border-gold-500 flex items-center justify-center bg-gray-50 shadow-sm">
+                    <i class="fa-solid fa-ring text-gold-500 text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-wider gold-gradient-text">SmartRing</span>
+                    <span class="text-[10px] text-gray-500 tracking-widest -mt-1 font-semibold">UNIVERSAL UAE</span>
+                </div>
+            </a>
+            <nav class="flex items-center gap-4">
+                <a href="#" class="sr-lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Slider -->
-    <section class="hero-slider">
-        <div class="slider-container">
-            <div class="slider-wrapper">
-                <div class="slide active">
-                    <img src="/images/slider/slider_Fazaa-du-web-banner-arabic.png" alt="Banner 1">
-                </div>
-                <div class="slide">
-                    <img src="/images/slider/slider_Zero-dirhams-arabic.png" alt="Banner 2">
-                </div>
+
+    <!-- Product Catalog Section -->
+    <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3">مجموعة الخواتم الذكية النقية</h2>
+            <p class="text-gray-600 text-sm">اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب</p>
+        </div>
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- JavaScript injected -->
+        </div>
+    </section>
+
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-gray-100 border-t border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">كيف تربط الخاتم بحسابك البنكي؟</h2>
+                <p class="text-gray-600 text-sm">خطوات بسيطة وسريعة لتفعيل الخاتم على حسابك البنكي بكل أمان</p>
             </div>
-            <div class="slider-nav">
-                <button class="slider-btn prev"><i class="fas fa-chevron-right"></i></button>
-                <button class="slider-btn next"><i class="fas fa-chevron-left"></i></button>
-            </div>
-            <div class="slider-dots">
-                <span class="dot active" data-index="0"></span>
-                <span class="dot" data-index="1"></span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
+                        <i class="fa-solid fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">1. حدد الخاتم والمقاس</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">اختر اللون والتصميم النقي والمقاس المناسب لإصبعك.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">2. اختر بنكك المفضل</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">حدد البنك الذي ترغب بربط الخاتم به في الإمارات.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-white border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 text-2xl mx-auto mb-6">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">3. التوصيل والدفع عند الاستلام</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">يصلك الخاتم جاهزاً ومرفقاً بدليل التفعيل السريع عبر تطبيق المحفظة.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits-section">
-        <div class="container">
-        <div> 
-    <h2 class="section-title section-title-custom" data-i18n="membershipBenefits">مزايا العضوية</h2>
-</div>
-            <div class="cards-grid">
-                <!-- Platinum Card -->
-                <div class="card platinum" data-tier="platinum">
-                    <div class="card-badge" data-i18n="mostPopular">الأكثر طلباً</div>
-                    <div class="card-image">
-                        <img src="/images/products/Platinum.png" alt="Platinum">
-                    </div>
-                    <h3 class="card-title" data-i18n="platinum">البلاتينية</h3>
-                    <p class="card-desc" data-i18n="platinumDesc">أوسع مزايا وعروض حصرية</p>
-                    <button class="btn btn-primary btn-order" onclick="startOrder('platinum')" data-i18n="orderNow">أطلب الآن</button>
-                    <details class="card-details">
-                        <summary data-i18n="showMore">عرض المزيد</summary>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat1">عروض البلاتينية الحصرية</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat2">العروض والخصومات</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat9">فزعة للسيارات المستعملة</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat10">التعويض عن الحوادث الشخصية</span></li>
-                        </ul>
-                    </details>
-                </div>
 
-                <!-- Gold Card -->
-                <div class="card gold" data-tier="gold">
-                    <div class="card-image">
-                        <img src="/images/products/Gold.png" alt="Gold">
-                    </div>
-                    <h3 class="card-title" data-i18n="gold">الذهبية</h3>
-                    <p class="card-desc" data-i18n="goldDesc">عروض وخصومات مميزة</p>
-                    <button class="btn btn-primary btn-order" onclick="startOrder('gold')" data-i18n="orderNow">أطلب الآن</button>
-                    <details class="card-details">
-                        <summary data-i18n="showMore">عرض المزيد</summary>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat2">العروض والخصومات</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat10">التعويض عن الحوادث الشخصية</span></li>
-                        </ul>
-                    </details>
-                </div>
-
-                <!-- Silver Card -->
-                <div class="card silver" data-tier="silver">
-                    <div class="card-image">
-                        <img src="/images/products/Silver.png" alt="Silver">
-                    </div>
-                    <h3 class="card-title" data-i18n="silver">الفضية</h3>
-                    <p class="card-desc" data-i18n="silverDesc">خصومات وخدمات أساسية</p>
-                    <button class="btn btn-primary btn-order" onclick="startOrder('silver')" data-i18n="orderNow">أطلب الآن</button>
-                    <details class="card-details">
-                        <summary data-i18n="showMore">عرض المزيد</summary>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
-                        </ul>
-                    </details>
-                </div>
-
-                <!-- Fazaa Discounts Card -->
-                <div class="card fazaa-discount" data-tier="fazaa">
-                    <div class="card-image">
-                        <img src="/images/products/Discount.png" alt="Fazaa Discounts">
-                    </div>
-                    <h3 class="card-title" data-i18n="fazaaDiscount">خصومات فزعة</h3>
-                    <p class="card-desc" data-i18n="fazaaDiscountDesc">خصومات مختارة يومياً</p>
-                    <button class="btn btn-primary btn-order" onclick="startOrder('fazaa')" data-i18n="orderNow">أطلب الآن</button>
-                    <details class="card-details">
-                        <summary data-i18n="showMore">عرض المزيد</summary>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
-                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
-                        </ul>
-                    </details>
-                </div>
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">الأسئلة الشائعة</h2>
+            <p class="text-gray-600 text-sm">كل ما ترغب بمعرفته حول الخواتم الذكية المستقلة</p>
+        </div>
+        <div class="space-y-4">
+            <div class="border border-gray-200 rounded-2xl bg-white p-6 shadow-sm">
+                <h3 class="font-bold text-gray-900 mb-2">هل الخاتم يحمل أي شعار بنكي؟</h3>
+                <p class="text-gray-600 text-xs leading-relaxed">لا، الخاتم نقي وخالٍ تماماً من أي شعارات أو أسماء بنوك، مما يمنحه مظهراً أنيقاً ومتعادلًا.</p>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <span class="brand-name">فزعة</span>
+    <footer class="bg-gray-900 text-gray-300 py-12 text-xs text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <div class="flex items-center justify-center gap-2">
+                <i class="fa-solid fa-ring text-gold-500 text-lg"></i>
+                <span class="text-sm font-bold text-white">SmartRing UAE</span>
             </div>
-            <div class="footer-links">
-                <a href="#" data-i18n="privacy">سياسة الخصوصية</a>
-                <a href="#" data-i18n="terms">شروط الخدمة</a>
-                <a href="#" data-i18n="support">الدعم</a>
-                <a href="#" data-i18n="faq">الأسئلة الشائعة</a>
-            </div>
-            <div class="footer-copyright">
-                <p>© 2026 <span data-i18n="brandName">فزعة</span>. <span data-i18n="rights">جميع الحقوق محفوظة.</span></p>
-            </div>
+            <p>جميع الحقوق محفوظة © 2026 SmartRing UAE - خواتم دفع ذكية مستقلة وخالية من الشعارات</p>
         </div>
     </footer>
 
+
+    <!-- JavaScript logic -->
     <script src="/js/main.js"></script>
     <script src="/js/i18n.js"></script>
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "خاتم الدفع الذكي - ذهبي نقي",
+                price: 399,
+                discountText: "خصم 15%",
+                color: "#d4af37",
+                tier: "gold",
+                image: "خاتم ذهبي لامع على خلفية شفافة.png",
+                details: "مصنوع من السيراميك الفاخر المعالج بطبقة ذهبية. مقاوم للخدش، مقاوم للماء بعمق 50 متراً، ولا يحتاج لأي شحن كهربائي."
+            },
+            {
+                id: 2,
+                name: "خاتم الدفع الذكي - فضي نقي",
+                price: 349,
+                discountText: "خصم 10%",
+                color: "#94a3b8",
+                tier: "silver",
+                image: "خاتم معدني فضي لامع.png",
+                details: "تصميم عصري من الفضة التكتيكية المطفأة. متوافق مع كافة أجهزة نقاط البيع في الإمارات، ويدعم التشفير الآمن للبطاقات."
+            },
+            {
+                id: 3,
+                name: "خاتم الدفع الذكي - أسود ملكي",
+                price: 349,
+                discountText: "خصم 5%",
+                color: "#0f172a",
+                tier: "platinum",
+                image: "خاتم أسود لامع بتصميم عصري.png",
+                details: "مظهر ملكي أنيق بلون أسود مطفي (Matte Black). خفيف الوزن للغاية، مريح للاستخدام اليومي وأثناء ممارسة الرياضة."
+            },
+            {
+                id: 4,
+                name: "خاتم الدفع الذكي - أزرق معدني",
+                price: 379,
+                discountText: "خصم 12%",
+                color: "#3b82f6",
+                tier: "platinum",
+                image: "خاتم أزرق معدني لامع.png",
+                details: "لمسة عصرية بلون أزرق معدني لامع. سطح أملس مقاوم للخدش، ومتوافق مع جميع المحافظ الرقمية ونقاط البيع."
+            },
+            {
+                id: 5,
+                name: "خاتم الدفع الذكي - وردي معدني",
+                price: 379,
+                discountText: "خصم 12%",
+                color: "#ec4899",
+                tier: "gold",
+                image: "خاتم معدني وردي لامع.png",
+                details: "تصميم أنيق بلون وردي معدني لامع. خفيف ومريح، مثالي للاستخدام اليومي ويدعم الدفع اللاتلامسي بأمان."
+            }
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(p => `
+                <div class="ring-card p-6 flex flex-col justify-between">
+                    <!-- شارة محدود الكمية -->
+                    <div class="absolute top-4 left-4 bg-red-600 text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-md">
+                        محدود الكمية
+                    </div>
+
+                    <div>
+                        <div class="flex justify-center items-center py-8 bg-gray-50 rounded-2xl mb-4 border border-gray-100 overflow-hidden">
+                            <img src="/images/products/${encodeURIComponent(p.image)}" alt="${p.name}" class="h-40 w-auto object-contain drop-shadow-md" loading="lazy">
+                        </div>
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-bold text-gray-900">${p.name}</h3>
+                            <p class="text-xs text-gray-600">تصميم نقي وخالٍ من أي شعارات، مقاوم للماء.</p>
+
+                            <!-- زر عرض المزيد -->
+                            <button onclick="toggleDetails(${p.id})" class="text-xs font-bold text-gold-600 hover:text-gold-500 flex items-center gap-1 focus:outline-none pt-1">
+                                <span id="btn-text-${p.id}">عرض المزيد من التفاصيل</span>
+                                <i id="btn-icon-${p.id}" class="fa-solid fa-chevron-down transition-transform"></i>
+                            </button>
+
+                            <!-- القائمة المنسدلة للتفاصيل والمزايا -->
+                            <div id="details-${p.id}" class="dropdown-content bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-600 leading-relaxed">
+                                <p><strong>المزايا والخصائص:</strong></p>
+                                <p class="mt-1">${p.details}</p>
+                                <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> مدة صلاحية الخاتم: 2 سنة</p>
+                                <p class="mt-1 text-[11px] text-red-600 font-bold"><i class="fa-solid fa-tag ml-1"></i> ${p.discountText}</p>
+                                <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> يعمل بلا بطارية نهائياً.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
+                        <span class="text-xl font-black text-gray-900">${p.price} AED</span>
+                        <button onclick="redirectToOrder(${p.id})" class="btn-gold px-4 py-2 rounded-xl text-xs font-bold shadow-sm">طلب الآن</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleDetails(id) {
+            const content = document.getElementById(`details-${id}`);
+            const btnText = document.getElementById(`btn-text-${id}`);
+            const btnIcon = document.getElementById(`btn-icon-${id}`);
+
+            content.classList.toggle('open');
+
+            if (content.classList.contains('open')) {
+                btnText.innerText = "إخفاء التفاصيل";
+                btnIcon.style.transform = "rotate(180deg)";
+            } else {
+                btnText.innerText = "عرض المزيد من التفاصيل";
+                btnIcon.style.transform = "rotate(0deg)";
+            }
+        }
+
+        function redirectToOrder(productId) {
+            const product = products.find(p => p.id === productId);
+            const tier = (product && product.tier) || 'platinum';
+            // احفظ الباقة المختارة ليستخدمها باقي تدفق الطلب (order3 / success)
+            try {
+                localStorage.setItem('fazaaTier', tier);
+                sessionStorage.removeItem('step1');
+                sessionStorage.removeItem('step2');
+                sessionStorage.removeItem('paymentDone');
+                sessionStorage.removeItem('otpVerified');
+            } catch (e) {}
+            // المرور عبر /order لبدء الجلسة على الخادم ثم التحويل إلى order1
+            window.location.href = '/order?tier=' + tier + '&ring=' + productId;
+        }
+
+        window.onload = renderProducts;
+    </script>
 </body>
 </html>

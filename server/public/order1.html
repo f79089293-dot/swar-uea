@@ -20,17 +20,24 @@ snaptr('track', 'PAGE_VIEW');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title >faza - فزعة</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/brand.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <img src="/images/logo.png" alt="Fazaa">
-            </div>
-            <nav class="nav">
+    <header class="sr-header">
+        <div class="sr-header-inner">
+            <a href="#" class="sr-brand">
+                <div class="sr-ring-badge">
+                    <i class="fa-solid fa-ring"></i>
+                </div>
+                <div class="sr-brand-text">
+                    <span class="sr-brand-name">SmartRing</span>
+                    <span class="sr-brand-sub">UNIVERSAL UAE</span>
+                </div>
+            </a>
+            <nav class="sr-nav">
                 <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
             </nav>
         </div>
@@ -92,21 +99,12 @@ snaptr('track', 'PAGE_VIEW');
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <span class="brand-name">فزعة</span>
-            </div>
-            <div class="footer-links">
-                <a href="#">سياسة الخصوصية</a>
-                <a href="#">شروط الخدمة</a>
-                <a href="#">الدعم</a>
-                <a href="#">الأسئلة الشائعة</a>
-            </div>
-            <div class="footer-copyright">
-                <p>© 2026 فزعة. جميع الحقوق محفوظة.</p>
-            </div>
+    <footer class="sr-footer">
+        <div class="sr-footer-brand">
+            <i class="fa-solid fa-ring"></i>
+            <span>SmartRing UAE</span>
         </div>
+        <p class="sr-footer-copy">جميع الحقوق محفوظة ©2027</p>
     </footer>
 
     <script src="/js/main.js"></script>
