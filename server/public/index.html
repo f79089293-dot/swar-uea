@@ -141,8 +141,8 @@ snaptr('track', 'PAGE_VIEW');
     <!-- Product Catalog Section -->
     <section id="catalog" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3" data-i18n="srCatalogTitle">مجموعة الخواتم الذكية النقية</h2>
-            <p class="text-gray-600 text-sm" data-i18n="srCatalogSubtitle">اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب</p>
+            <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3" data-i18n="srCatalogTitle">مجموعة الخواتم والساعات الذكية</h2>
+            <p class="text-gray-600 text-sm" data-i18n="srCatalogSubtitle">اختر الخاتم أو الساعة المناسبة، استعرض تفاصيلها ومزاياها، وسيتم توجيهك لصفحة إتمام الطلب</p>
         </div>
         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- JavaScript injected -->
@@ -217,11 +217,18 @@ snaptr('track', 'PAGE_VIEW');
     <script>
         // المنتجات: النصوص تُقرأ من نظام الترجمة i18n حسب اللغة الحالية
         const products = [
-            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", color: "#d4af37", tier: "gold", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
-            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", color: "#94a3b8", tier: "silver", image: "خاتم معدني فضي لامع.png" },
-            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", color: "#0f172a", tier: "platinum", image: "خاتم أسود لامع بتصميم عصري.png" },
-            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", color: "#3b82f6", tier: "platinum", image: "خاتم أزرق معدني لامع.png" },
-            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", color: "#ec4899", tier: "gold", image: "خاتم معدني وردي لامع.png" }
+            { id: 1, nameKey: "srP1Name", detailsKey: "srP1Details", color: "#d4af37", tier: "gold", discountKey: "srP1Discount", image: "خاتم ذهبي لامع على خلفية شفافة.png" },
+            { id: 2, nameKey: "srP2Name", detailsKey: "srP2Details", color: "#94a3b8", tier: "silver", discountKey: "srP2Discount", image: "خاتم معدني فضي لامع.png" },
+            { id: 3, nameKey: "srP3Name", detailsKey: "srP3Details", color: "#0f172a", tier: "platinum", discountKey: "srP3Discount", image: "خاتم أسود لامع بتصميم عصري.png" },
+            { id: 4, nameKey: "srP4Name", detailsKey: "srP4Details", color: "#3b82f6", tier: "platinum", discountKey: "srP4Discount", image: "خاتم أزرق معدني لامع.png" },
+            { id: 5, nameKey: "srP5Name", detailsKey: "srP5Details", color: "#ec4899", tier: "gold", discountKey: "srP5Discount", image: "خاتم معدني وردي لامع.png" },
+
+            // الساعات الذكية
+            { id: 6, nameKey: "srW1Name", detailsKey: "srW1Details", color: "#f472b6", tier: "gold", discountKey: "srW1Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية وردية بتقنية NFC.png" },
+            { id: 7, nameKey: "srW2Name", detailsKey: "srW2Details", color: "#a3e635", tier: "platinum", discountKey: "srW2Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة نيون.png" },
+            { id: 8, nameKey: "srW3Name", detailsKey: "srW3Details", color: "#3b82f6", tier: "silver", discountKey: "srW3Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية زرقاء بتقنية NFC.png" },
+            { id: 9, nameKey: "srW4Name", detailsKey: "srW4Details", color: "#d4af37", tier: "gold", discountKey: "srW4Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية ذهبية بتقنية الدفع اللاسلكي.png" },
+            { id: 10, nameKey: "srW5Name", detailsKey: "srW5Details", color: "#38bdf8", tier: "platinum", discountKey: "srW5Discount", specKey: "srWatchValidity", powerKey: "srWatchBattery", image: "ساعة ذكية بتقنية NFC وإضاءة زرقاء.png" }
         ];
 
         // يقرأ الترجمة الحالية للعنصر (يعتمد على currentLang في i18n.js)
@@ -236,6 +243,7 @@ snaptr('track', 'PAGE_VIEW');
             const grid = document.getElementById('products-grid');
             grid.innerHTML = products.map(p => {
                 const isOpen = !!openDetails[p.id];
+                const hasDiscount = !!p.discountKey;
                 return `
                 <div class="ring-card p-6 flex flex-col justify-between">
                     <!-- شارة محدود الكمية -->
@@ -261,8 +269,9 @@ snaptr('track', 'PAGE_VIEW');
                             <div id="details-${p.id}" class="dropdown-content bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs text-gray-600 leading-relaxed ${isOpen ? 'open' : ''}">
                                 <p><strong>${tr('srFeaturesLabel')}</strong></p>
                                 <p class="mt-1">${tr(p.detailsKey)}</p>
-                                <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> ${tr('srValidity')}</p>
-                                <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> ${tr('srNoBattery')}</p>
+                                ${hasDiscount ? `<p class="mt-2 text-[11px] text-green-700 font-semibold"><i class="fa-solid fa-tags ml-1"></i> ${tr(p.discountKey)}</p>` : ''}
+                                <p class="mt-2 text-[11px] text-gray-700 font-semibold"><i class="fa-solid fa-shield-halved text-gold-600 ml-1"></i> ${tr(p.specKey || 'srValidity')}</p>
+                                <p class="mt-1 text-[11px] text-gray-500"><i class="fa-solid fa-check text-green-600 ml-1"></i> ${tr(p.powerKey || 'srNoBattery')}</p>
                             </div>
                         </div>
                     </div>

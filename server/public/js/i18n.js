@@ -159,8 +159,8 @@ const translations = {
 
         // ===== SmartRing Homepage =====
         srPageTitle: "SmartRing UAE | مستقبل الدفع بين يديك",
-        srCatalogTitle: "مجموعة الخواتم الذكية النقية",
-        srCatalogSubtitle: "اختر الخاتم المناسب، استعرض تفاصيله ومزاياه، وسيتم توجيهك لصفحة إتمام الطلب",
+        srCatalogTitle: "مجموعة الخواتم والساعات الذكية",
+        srCatalogSubtitle: "اختر الخاتم أو الساعة المناسبة، استعرض تفاصيلها ومزاياها، وسيتم توجيهك لصفحة إتمام الطلب",
         srLimitedStock: "محدود الكمية",
         srProductDesc: "تصميم نقي وخالٍ من أي شعارات، مقاوم للماء.",
         srShowDetails: "عرض المزيد من التفاصيل",
@@ -192,7 +192,31 @@ const translations = {
         srP4Details: "لمسة عصرية بلون أزرق معدني لامع. سطح أملس مقاوم للخدش، ومتوافق مع جميع المحافظ الرقمية ونقاط البيع.",
         srP5Name: "خاتم الدفع الذكي - وردي معدني",
         srP5Details: "تصميم أنيق بلون وردي معدني لامع. خفيف ومريح، مثالي للاستخدام اليومي ويدعم الدفع اللاتلامسي بأمان.",
-        srSelectRingFirst: "يرجى اختيار الخاتم أولاً ثم إكمال طلبك",
+        // خصومات الخواتم حسب أهمية المنتج (الأعلى 15% والأدنى 5%)
+        srP1Discount: "خصم 15%",
+        srP5Discount: "خصم 15% - منتج نسائي ناعم",
+        srP3Discount: "خصم 12%",
+        srP4Discount: "خصم 8%",
+        srP2Discount: "خصم 5%",
+        // الساعات الذكية
+        srWatchValidity: "مدة الضمان: 2 سنة",
+        srWatchBattery: "بطارية تدوم حتى 7 أيام مع شحن مغناطيسي سريع.",
+        srW1Name: "ساعة ذكية وردية بتقنية NFC",
+        srW1Details: "شاشة AMOLED لمسية بإطار وردي أنيق، تدعم الدفع اللاتلامسي عبر NFC ومتابعة النشاط اليومي ومعدل نبض القلب، مع مقاومة للماء.",
+        srW1Discount: "خصم 15% - منتج نسائي ناعم",
+        srW2Name: "ساعة ذكية بتقنية NFC وإضاءة نيون",
+        srW2Details: "تصميم رياضي عصري بإضاءة نيون جانبية، تدعم NFC للدفع اللاتلامسي، مع تتبع الخطوات والسعرات والنوم وإشعارات الهاتف.",
+        srW2Discount: "خصم 12%",
+        srW3Name: "ساعة ذكية زرقاء بتقنية NFC",
+        srW3Details: "ساعة أنيقة بلون أزرق معدني، شاشة عالية الوضوح، تدعم الدفع اللاتلامسي NFC ومتابعة اللياقة والتنبيهات الذكية.",
+        srW3Discount: "خصم 8%",
+        srW4Name: "ساعة ذكية ذهبية بتقنية الدفع اللاسلكي",
+        srW4Details: "إطار ذهبي فاخر مع دعم الدفع اللاسلكي وNFC، شاشة AMOLED، ومستشعرات لقياس النبض والأكسجين في الدم.",
+        srW4Discount: "خصم 15%",
+        srW5Name: "ساعة ذكية بتقنية NFC وإضاءة زرقاء",
+        srW5Details: "ساعة بشاشة لمسية كاملة وإضاءة زرقاء مميزة، تدعم الدفع اللاتلامسي NFC، مع أوضاع رياضية متعددة ومقاومة للماء.",
+        srW5Discount: "خصم 5%",
+        srSelectRingFirst: "يرجى اختيار المنتج أولاً ثم إكمال طلبك",
         srFree: "مجاني"
     },
     en: {
@@ -352,8 +376,8 @@ const translations = {
 
         // ===== SmartRing Homepage =====
         srPageTitle: "SmartRing UAE | The Future of Payment in Your Hand",
-        srCatalogTitle: "The Pure Smart Rings Collection",
-        srCatalogSubtitle: "Choose the right ring, explore its details and features, and you will be directed to the order page",
+        srCatalogTitle: "The Smart Rings & Watches Collection",
+        srCatalogSubtitle: "Choose the right ring or watch, explore its details and features, and you will be directed to the order page",
         srLimitedStock: "Limited Stock",
         srProductDesc: "Pure design with no logos, water resistant.",
         srShowDetails: "Show more details",
@@ -385,7 +409,31 @@ const translations = {
         srP4Details: "A modern touch in shiny metallic blue. Smooth scratch-resistant surface, compatible with all digital wallets and point-of-sale devices.",
         srP5Name: "Smart Payment Ring - Metallic Pink",
         srP5Details: "An elegant design in shiny metallic pink. Lightweight and comfortable, ideal for daily use and supports secure contactless payment.",
-        srSelectRingFirst: "Please select a ring first to complete your order",
+        // Ring discounts by product importance (max 15%, min 5%)
+        srP1Discount: "15% off",
+        srP5Discount: "15% off - soft feminine design",
+        srP3Discount: "12% off",
+        srP4Discount: "8% off",
+        srP2Discount: "5% off",
+        // Smart Watches
+        srWatchValidity: "Warranty: 2 years",
+        srWatchBattery: "Battery lasts up to 7 days with fast magnetic charging.",
+        srW1Name: "Smart Watch - Pink NFC",
+        srW1Details: "Touch AMOLED display with an elegant pink frame. Supports NFC contactless payment, daily activity and heart-rate tracking, and is water resistant.",
+        srW1Discount: "15% off - soft feminine design",
+        srW2Name: "Smart Watch - NFC with Neon Light",
+        srW2Details: "A modern sporty design with side neon lighting. Supports NFC contactless payment, with step, calorie and sleep tracking plus phone notifications.",
+        srW2Discount: "12% off",
+        srW3Name: "Smart Watch - Blue NFC",
+        srW3Details: "An elegant metallic blue watch with a high-resolution display. Supports NFC contactless payment, fitness tracking and smart alerts.",
+        srW3Discount: "8% off",
+        srW4Name: "Smart Watch - Gold Wireless Payment",
+        srW4Details: "A luxurious gold frame with wireless payment and NFC support, an AMOLED display, and sensors for heart rate and blood oxygen.",
+        srW4Discount: "15% off",
+        srW5Name: "Smart Watch - NFC with Blue Light",
+        srW5Details: "A full touch-screen watch with distinctive blue lighting. Supports NFC contactless payment, with multiple sports modes and water resistance.",
+        srW5Discount: "5% off",
+        srSelectRingFirst: "Please select a product first to complete your order",
         srFree: "Free"
     }
 };
